@@ -31,15 +31,13 @@ class Arena
 
     public function fight()
     {
-        if ($this->checkCharactersDie()) {
-            return;
+        while (!$this->checkCharactersDie()) {
+            if ($this->attacker === $this->hero) {
+                $this->attack($this->hero, $this->monster);
+            } else {
+                $this->attack($this->monster, $this->hero);
+            }
         }
-        if ($this->attacker === $this->hero) {
-            $this->attack($this->hero, $this->monster);
-        } else {
-            $this->attack($this->monster, $this->hero);
-        }
-        $this->fight();
     }
 
     /**
