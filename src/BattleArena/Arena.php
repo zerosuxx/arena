@@ -17,10 +17,11 @@ class Arena
 
     public function getAnnouncement(): string
     {
+        $winner = $this->getWinner();
         return sprintf(
             '%s has won the battle, %d health left',
-            $this->hero->getName(),
-            $this->hero->getHealth()
+            $winner->getName(),
+            $winner->getHealth()
         );
     }
 
