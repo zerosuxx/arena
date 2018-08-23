@@ -13,6 +13,10 @@ class Character
      * @var int
      */
     private $health;
+    /**
+     * @var int
+     */
+    private $damage;
 
     /**
      * Character constructor.
@@ -24,6 +28,7 @@ class Character
     {
         $this->name = $name;
         $this->health = $health;
+        $this->damage = $damage;
     }
 
     /**
@@ -42,5 +47,11 @@ class Character
         return $this->health;
     }
 
-
+    /**
+     * @return int
+     */
+    public function getDamage(): int
+    {
+        return $this->damage;
+    }
 }
