@@ -2,6 +2,7 @@
 
 use BattleArena\Arena;
 use BattleArena\Character;
+use BattleArena\Enemies;
 use PHPUnit\Framework\TestCase;
 
 class ArenaTest extends TestCase
@@ -49,6 +50,21 @@ class ArenaTest extends TestCase
             [4, 5, 5, 10, 'Tamark has won the battle, 4 health left'],
             [5, 5, 6, 5, 'Giant Wolf has won the battle, 1 health left'],
         ];
+    }
+
+    /**
+     * @test
+     */
+    public function getAnnouncement_HasHeroAndMultipleEnemy_ReturnsEnemiesWinsAnnouncement()
+    {
+        $enemies = new Enemies(new Character('Zombie1', 10, 5));
+        $enemies->addEnemy(new Character('Zombie2', 10, 50));
+
+        $arena = new Arena(new Character('Tamark', 50, 10), $enemies);
+
+        $arena->fight();
+
+        $this->assertEquals('Enemies has won the battle, 10 health left', $arena->getAnnouncement());
     }
 
 }
