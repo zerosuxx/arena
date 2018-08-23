@@ -31,16 +31,28 @@ class Arena
 
     public function fight()
     {
-        if ($this->hero->getHealth() < 1 || $this->monster->getHealth() < 1) {
+        if ($this->checkCharactersDie()) {
             return;
         }
         if ($this->attacker === $this->hero) {
-            $this->monster->setHealth($this->monster->getHealth() - $this->attacker->getDamage());
-            $this->attacker = $this->monster;
+            $this->attack($this->hero, $this->monster);
         } else {
-            $this->hero->setHealth($this->hero->getHealth() - $this->attacker->getDamage());
-            $this->attacker = $this->hero;
+            $this->attack($this->monster, $this->hero);
         }
         $this->fight();
+    }
+
+    /**
+     * @return bool
+     */
+    private function checkCharactersDie(): bool
+    {
+        return $this->hero->getHealth() < 1 || $this->monster->getHealth() < 1;
+    }
+
+    private function attack(Character $attacker, Character $defender): void
+    {
+        $defender->setHealth($defender->getHealth() - $attacker->getDamage());
+        $this->attacker = $defender;
     }
 }
