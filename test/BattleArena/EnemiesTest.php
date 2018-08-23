@@ -25,4 +25,12 @@ class EnemiesTest extends TestCase
         $this->assertEquals(50, $this->enemies->getHealth());
     }
 
+    /**
+     * @test
+     */
+    public function getName_ReturnsEnemiesName()
+    {
+        $this->assertEquals('Enemies', $this->enemies->getName());
+    }
+
 }

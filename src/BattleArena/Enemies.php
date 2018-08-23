@@ -30,7 +30,7 @@ class Enemies implements CharacterInterface
 
     public function getName(): string
     {
-
+        return 'Enemies';
     }
 
     public function getDamage(): int
