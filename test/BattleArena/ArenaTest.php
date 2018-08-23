@@ -9,57 +9,46 @@ class ArenaTest extends TestCase
     /**
      * @test
      */
-    public function getAnnouncement_HasTwoCharacter_ReturnsHeroWinsAnnouncement()
+    public function getAnnouncement_HasTwoCharacterNoFight_ReturnsBiggerHealthWinsAnnouncement()
     {
-        list(, , $arena) = $this->getPlayersAndArena(50, 4, 16, 6);
+        $arena = new Arena(new Character('Tamark', 50, 0), new Character('Giant Wolf', 49, 0));
 
         $this->assertEquals('Tamark has won the battle, 50 health left', $arena->getAnnouncement());
     }
 
     /**
      * @test
-     */
-    public function getWinner_HasTwoCharacterAndMonsterBiggerHealth_ReturnsMonsterWins()
-    {
-        list(, $monster, $arena) = $this->getPlayersAndArena(50, 4, 53, 6);
-
-        $this->assertEquals($monster, $arena->getWinner());
-    }
-
-    /**
-     * @test
-     */
-    public function getWinner_HasTwoCharacterFightingOneAttack_ReturnsHeroWins()
-    {
-        list($hero, , $arena) = $this->getPlayersAndArena(4, 5, 5, 10);
-        $arena->fight();
-
-        $this->assertEquals($hero, $arena->getWinner());
-    }
-
-    /**
-     * @test
-     */
-    public function getWinner_HasTwoCharacterFightingTwoAttack_ReturnsMonsterWins()
-    {
-        list(, $monster, $arena) = $this->getPlayersAndArena(5, 5, 6, 5);
-        $arena->fight();
-
-        $this->assertEquals($monster, $arena->getWinner());
-    }
-
-    /**
+     * @dataProvider announcementProvider
      * @param int $heroHealth
      * @param int $heroDamage
      * @param int $monsterHealth
      * @param int $monsterDamage
-     * @return Arena[]|Character[]
+     * @param string $expectedAnnouncement
      */
-    private function getPlayersAndArena(int $heroHealth, int $heroDamage, int $monsterHealth, int $monsterDamage): array
-    {
+    public function getAnnouncement_TwoCharacterFighting_ReturnsAnnouncement(
+        int $heroHealth,
+        int $heroDamage,
+        int $monsterHealth,
+        int $monsterDamage,
+        string $expectedAnnouncement
+    ) {
         $hero = new Character('Tamark', $heroHealth, $heroDamage);
         $monster = new Character('Giant Wolf', $monsterHealth, $monsterDamage);
         $arena = new Arena($hero, $monster);
-        return [$hero, $monster, $arena];
+
+        $arena->fight();
+
+        $this->assertEquals($expectedAnnouncement, $arena->getAnnouncement());
     }
+
+    public function announcementProvider()
+    {
+        return [
+            [50, 4, 16, 6, 'Tamark has won the battle, 32 health left'],
+            [50, 4, 53, 6, 'Giant Wolf has won the battle, 17 health left'],
+            [4, 5, 5, 10, 'Tamark has won the battle, 4 health left'],
+            [5, 5, 6, 5, 'Giant Wolf has won the battle, 1 health left'],
+        ];
+    }
+
 }
