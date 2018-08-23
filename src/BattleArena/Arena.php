@@ -4,15 +4,15 @@ namespace BattleArena;
 
 class Arena
 {
+    private $attacker;
     private $hero;
     private $monster;
-    private $attacker;
 
     public function __construct(Character $hero, Character $monster)
     {
+        $this->attacker = $hero;
         $this->hero = $hero;
         $this->monster = $monster;
-        $this->attacker = $hero;
     }
 
     public function getAnnouncement(): string
@@ -28,11 +28,7 @@ class Arena
     public function fight()
     {
         while (!$this->checkCharactersDie()) {
-            if ($this->attacker === $this->hero) {
-                $this->attack($this->hero, $this->monster);
-            } else {
-                $this->attack($this->monster, $this->hero);
-            }
+            $this->attack($this->attacker, $this->getDefender());
         }
     }
 
@@ -50,5 +46,11 @@ class Arena
     {
         $defender->setHealth($defender->getHealth() - $attacker->getDamage());
         $this->attacker = $defender;
+    }
+
+    private function getDefender(): Character
+    {
+        $defender = $this->attacker === $this->hero ? $this->monster : $this->hero;
+        return $defender;
     }
 }
