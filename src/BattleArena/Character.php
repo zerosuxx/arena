@@ -1,6 +1,6 @@
 <?php
 
-namespace Arena;
+namespace BattleArena;
 
 class Character
 {

@@ -5,13 +5,13 @@ use PHPUnit\Framework\TestCase;
 class CharacterTest extends TestCase
 {
     /**
-     * @var \Arena\Character
+     * @var \BattleArena\Character
      */
     private $character;
 
     public function setUp()
     {
-        $this->character = new Arena\Character('Tamark', 50, 5);
+        $this->character = new BattleArena\Character('Tamark', 50, 5);
     }
 
     /**
