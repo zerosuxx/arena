@@ -18,7 +18,7 @@ class ArenaTest extends TestCase
     /**
      * @test
      */
-    public function getAnnouncement_GivenOneCharacter_ReturnsAnnouncement()
+    public function getAnnouncement_ReturnsAnnouncement()
     {
         $this->assertEquals('Tamark has won the battle, 32 health left', $this->arena->getAnnouncement());
     }
