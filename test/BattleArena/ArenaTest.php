@@ -22,6 +22,7 @@ class ArenaTest extends TestCase
     public function getWinner_HasTwoCharacterAndMonsterBiggerHealth_ReturnsMonsterWins()
     {
         list(, $monster, $arena) = $this->getPlayersAndArena(50, 4, 53, 6);
+
         $this->assertEquals($monster, $arena->getWinner());
     }
 
@@ -41,18 +42,20 @@ class ArenaTest extends TestCase
      */
     public function getWinner_HasTwoCharacterFightingTwoAttack_ReturnsMonsterWins()
     {
-
         list(, $monster, $arena) = $this->getPlayersAndArena(5, 5, 6, 5);
-
         $arena->fight();
 
         $this->assertEquals($monster, $arena->getWinner());
     }
 
     /**
-     * @return array
+     * @param int $heroHealth
+     * @param int $heroDamage
+     * @param int $monsterHealth
+     * @param int $monsterDamage
+     * @return Arena[]|Character[]
      */
-    private function getPlayersAndArena($heroHealth, $heroDamage, $monsterHealth, $monsterDamage): array
+    private function getPlayersAndArena(int $heroHealth, int $heroDamage, int $monsterHealth, int $monsterDamage): array
     {
         $hero = new Character('Tamark', $heroHealth, $heroDamage);
         $monster = new Character('Giant Wolf', $monsterHealth, $monsterDamage);
