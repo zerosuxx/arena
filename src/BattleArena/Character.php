@@ -2,7 +2,7 @@
 
 namespace BattleArena;
 
-class Character
+class Character implements CharacterInterface
 {
     /**
      * @var string
@@ -32,7 +32,7 @@ class Character
     }
 
     /**
-     * @return string
+     * {@inheritDoc}
      */
     public function getName(): string
     {
@@ -40,7 +40,7 @@ class Character
     }
 
     /**
-     * @return int
+     * {@inheritDoc}
      */
     public function getHealth(): int
     {
@@ -48,7 +48,7 @@ class Character
     }
 
     /**
-     * @return int
+     * {@inheritDoc}
      */
     public function getDamage(): int
     {
@@ -56,7 +56,7 @@ class Character
     }
 
     /**
-     * @param int $health
+     * {@inheritDoc}
      */
     public function setHealth(int $health): void
     {

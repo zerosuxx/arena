@@ -8,7 +8,7 @@ class Arena
     private $hero;
     private $monster;
 
-    public function __construct(Character $hero, Character $monster)
+    public function __construct(CharacterInterface $hero, CharacterInterface $monster)
     {
         $this->attacker = $hero;
         $this->hero = $hero;
@@ -32,7 +32,7 @@ class Arena
         }
     }
 
-    private function getWinner(): Character
+    private function getWinner(): CharacterInterface
     {
         return $this->hero->getHealth() > $this->monster->getHealth() ? $this->hero : $this->monster;
     }
@@ -42,13 +42,13 @@ class Arena
         return $this->hero->getHealth() < 1 || $this->monster->getHealth() < 1;
     }
 
-    private function attack(Character $attacker, Character $defender): void
+    private function attack(CharacterInterface $attacker, CharacterInterface $defender): void
     {
         $defender->setHealth($defender->getHealth() - $attacker->getDamage());
         $this->attacker = $defender;
     }
 
-    private function getDefender(): Character
+    private function getDefender(): CharacterInterface
     {
         $defender = $this->attacker === $this->hero ? $this->monster : $this->hero;
         return $defender;
