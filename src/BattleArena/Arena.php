@@ -26,4 +26,9 @@ class Arena
     {
         return $this->hero->getHealth() > $this->monster->getHealth() ? $this->hero : $this->monster;
     }
+
+    public function fight()
+    {
+        $this->monster->setHealth($this->monster->getHealth() - $this->hero->getDamage());
+    }
 }

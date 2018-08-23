@@ -31,4 +31,19 @@ class ArenaTest extends TestCase
 
         $this->assertEquals($monster, $arena->getWinner());
     }
+
+    /**
+     * @test
+     */
+    public function getWinner_HasTwoCharacterFightingOneStep_ReturnsHeroWins()
+    {
+
+        $hero = new Character('Tamark', 4, 5);
+        $monster = new Character('Giant Wolf', 5, 10);
+        $arena = new Arena($hero, $monster);
+
+        $arena->fight();
+
+        $this->assertEquals($hero, $arena->getWinner());
+    }
 }
