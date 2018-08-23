@@ -14,12 +14,18 @@ class ArenaTest extends TestCase
     /**
      * @var Character
      */
-    private $character;
+    private $hero;
+
+    /**
+     * @var Character
+     */
+    private $monster;
 
     public function setUp()
     {
-        $this->character = new Character('Tamark', 32, 5);
-        $this->arena = new Arena($this->character);
+        $this->hero = new Character('Tamark', 50, 4);
+        $this->monster = new Character('Giant Wolf', 16, 6);
+        $this->arena = new Arena($this->hero, $this->monster);
     }
 
     /**
@@ -27,7 +33,7 @@ class ArenaTest extends TestCase
      */
     public function getAnnouncement_GivenOneCharacter_ReturnsAnnouncement()
     {
-        $this->assertEquals('Tamark has won the battle, 32 health left', $this->arena->getAnnouncement());
+        $this->assertEquals('Tamark has won the battle, 50 health left', $this->arena->getAnnouncement());
     }
 
     /**
@@ -35,7 +41,7 @@ class ArenaTest extends TestCase
      */
     public function getAnnouncement_GivenOneCharacterWith99Health_ReturnsCorrectAnnouncement()
     {
-        $this->character->setHealth(99);
+        $this->hero->setHealth(99);
         $this->assertEquals('Tamark has won the battle, 99 health left', $this->arena->getAnnouncement());
     }
 }
