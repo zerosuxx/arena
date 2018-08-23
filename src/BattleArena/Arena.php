@@ -25,11 +25,6 @@ class Arena
         );
     }
 
-    public function getWinner(): Character
-    {
-        return $this->hero->getHealth() > $this->monster->getHealth() ? $this->hero : $this->monster;
-    }
-
     public function fight()
     {
         while (!$this->checkCharactersDie()) {
@@ -41,9 +36,11 @@ class Arena
         }
     }
 
-    /**
-     * @return bool
-     */
+    private function getWinner(): Character
+    {
+        return $this->hero->getHealth() > $this->monster->getHealth() ? $this->hero : $this->monster;
+    }
+
     private function checkCharactersDie(): bool
     {
         return $this->hero->getHealth() < 1 || $this->monster->getHealth() < 1;
