@@ -42,5 +42,14 @@ class Enemies implements CharacterInterface
 
     public function setHealth(int $health): void
     {
+        $minusHealth = $this->getHealth() - $health;
+        $index = key($this->enemies);
+        $enemy = $this->enemies[$index];
+        $newHealth = $enemy->getHealth() - $minusHealth;
+        if ($newHealth >= 1) {
+            $enemy->setHealth($newHealth);
+        } else {
+            unset($this->enemies[$index]);
+        }
     }
 }
