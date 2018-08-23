@@ -24,6 +24,6 @@ class Arena
 
     public function getWinner(): Character
     {
-        return $this->hero;
+        return $this->hero->getHealth() > $this->monster->getHealth() ? $this->hero : $this->monster;
     }
 }
