@@ -6,9 +6,9 @@ class Character
 {
     private $name;
 
-    public function __construct(array $array)
+    public function __construct(string $name, int $health, int $damage)
     {
-        $this->name = $array['name'];
+        $this->name = $name;
     }
 
     public function getName(): string

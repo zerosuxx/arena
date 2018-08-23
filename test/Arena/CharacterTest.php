@@ -4,15 +4,14 @@ use PHPUnit\Framework\TestCase;
 
 class CharacterTest extends TestCase
 {
+    /**
+     * @var \Arena\Character
+     */
     private $character;
 
     public function setUp()
     {
-        $this->character = new Arena\Character([
-            "name" => "Tamas",
-            "health" => 50,
-            "base_damage" => 4
-        ]);
+        $this->character = new Arena\Character('Tamark', 50, 5);
     }
 
     /**
@@ -20,7 +19,6 @@ class CharacterTest extends TestCase
      */
     public function getName_ReturnsCharacterName()
     {
-
-        $this->assertEquals('Tamas', $this->character->getName());
+        $this->assertEquals('Tamark', $this->character->getName());
     }
 }
