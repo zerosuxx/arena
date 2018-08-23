@@ -19,4 +19,9 @@ class Arena
             $this->hero->getName(),
             $this->hero->getHealth());
     }
+
+    public function getWinner(): Character
+    {
+        return $this->hero;
+    }
 }

@@ -44,4 +44,12 @@ class ArenaTest extends TestCase
         $this->hero->setHealth(99);
         $this->assertEquals('Tamark has won the battle, 99 health left', $this->arena->getAnnouncement());
     }
+
+    /**
+     * @test
+     */
+    public function getWinner_TwoCharacterFighting_ReturnsHeroWins()
+    {
+        $this->assertEquals($this->hero, $this->arena->getWinner());
+    }
 }
