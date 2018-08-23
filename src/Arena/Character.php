@@ -5,6 +5,7 @@ namespace Arena;
 class Character
 {
     private $name;
+
     public function __construct(array $array)
     {
         $this->name = $array['name'];
