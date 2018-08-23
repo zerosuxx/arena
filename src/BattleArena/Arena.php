@@ -15,9 +15,11 @@ class Arena
 
     public function getAnnouncement(): string
     {
-        return sprintf('%s has won the battle, %d health left',
+        return sprintf(
+            '%s has won the battle, %d health left',
             $this->hero->getName(),
-            $this->hero->getHealth());
+            $this->hero->getHealth()
+        );
     }
 
     public function getWinner(): Character
