@@ -54,4 +54,12 @@ class Character
     {
         return $this->damage;
     }
+
+    /**
+     * @param int $health
+     */
+    public function setHealth(int $health): void
+    {
+        $this->health = $health;
+    }
 }
