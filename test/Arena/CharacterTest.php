@@ -21,4 +21,12 @@ class CharacterTest extends TestCase
     {
         $this->assertEquals('Tamark', $this->character->getName());
     }
+
+    /**
+     * @test
+     */
+    public function getHealth_ReturnsCharacterHealth()
+    {
+        $this->assertEquals(50, $this->character->getHealth());
+    }
 }
