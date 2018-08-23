@@ -35,7 +35,11 @@ class Enemies implements CharacterInterface
 
     public function getDamage(): int
     {
-
+        $sum = 0;
+        foreach ($this->enemies as $en) {
+            $sum += $en->getDamage();
+        }
+        return $sum;
     }
 
     public function setHealth(int $health): void

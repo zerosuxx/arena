@@ -14,6 +14,7 @@ class EnemiesTest extends TestCase
     protected function setUp()
     {
         $this->enemies = new Enemies(new Character('Zombie1', 20, 5));
+        $this->enemies->addEnemy(new Character('Zombie2', 30, 5));
     }
 
     /**
@@ -21,7 +22,6 @@ class EnemiesTest extends TestCase
      */
     public function getHealth_HasMultipleEnemies_ReturnsSumOfHealth()
     {
-        $this->enemies->addEnemy(new Character('Zombie2', 30, 5));
         $this->assertEquals(50, $this->enemies->getHealth());
     }
 
@@ -31,6 +31,14 @@ class EnemiesTest extends TestCase
     public function getName_ReturnsEnemiesName()
     {
         $this->assertEquals('Enemies', $this->enemies->getName());
+    }
+
+    /**
+     * @test
+     */
+    public function getDamage_HasMultipleEnemies_ReturnsSumOfDamage()
+    {
+        $this->assertEquals(10, $this->enemies->getDamage());
     }
 
 }
