@@ -4,6 +4,7 @@ use BattleArena\Arena;
 use BattleArena\Character\Character;
 use BattleArena\Character\Enemies;
 use BattleArena\Character\Hero;
+use BattleArena\Consumable\HealingPotion;
 use BattleArena\Equipment\Armour;
 use BattleArena\Equipment\Weapon;
 use PHPUnit\Framework\TestCase;
@@ -118,5 +119,22 @@ class ArenaTest extends TestCase
         $announcement = $arena->battle();
 
         $this->assertEquals('Tamark has won the battle, 25 health left', $announcement);
+    }
+
+    /**
+     * @test
+     */
+    public function battle_HasHeroWithEquipmentsAndWithConsumablesAndOneEnemy_ReturnsMonsterWinsAnnouncement()
+    {
+        $hero = new Hero('Tamark', 11, 4);
+        $hero->addEquipment(new Weapon(1));
+        $hero->addConsumable(new HealingPotion());
+        $hero->addConsumable(new HealingPotion());
+
+        $orc = new Character('Orc', 60, 6);
+
+        $arena = new Arena($hero, $orc);
+
+        $this->assertEquals('Orc has won the battle, 50 health left', $arena->battle());
     }
 }
