@@ -1,8 +1,8 @@
 <?php
 
 use BattleArena\Arena;
-use BattleArena\Character;
-use BattleArena\Enemies;
+use BattleArena\Character\Character;
+use BattleArena\Character\Enemies;
 use PHPUnit\Framework\TestCase;
 
 class ArenaTest extends TestCase

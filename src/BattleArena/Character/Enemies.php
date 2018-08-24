@@ -1,6 +1,6 @@
 <?php
 
-namespace BattleArena;
+namespace BattleArena\Character;
 
 class Enemies implements CharacterInterface
 {

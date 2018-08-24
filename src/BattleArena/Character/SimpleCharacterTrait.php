@@ -1,6 +1,6 @@
 <?php
 
-namespace BattleArena;
+namespace BattleArena\Character;
 
 trait SimpleCharacterTrait
 {

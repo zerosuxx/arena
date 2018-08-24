@@ -2,6 +2,8 @@
 
 namespace BattleArena;
 
+use BattleArena\Character\CharacterInterface;
+
 class Arena
 {
     private $attacker;

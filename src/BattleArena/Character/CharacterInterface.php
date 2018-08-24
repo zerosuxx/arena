@@ -1,7 +1,6 @@
 <?php
 
-namespace BattleArena;
-
+namespace BattleArena\Character;
 
 interface CharacterInterface
 {

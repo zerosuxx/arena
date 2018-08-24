@@ -1,6 +1,6 @@
 <?php
 
-namespace BattleArena;
+namespace BattleArena\Equipment;
 
 /**
  * Class Weapon

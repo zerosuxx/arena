@@ -1,7 +1,7 @@
 <?php
 
-use BattleArena\Character;
-use BattleArena\Enemies;
+use BattleArena\Character\Character;
+use BattleArena\Character\Enemies;
 use PHPUnit\Framework\TestCase;
 
 class EnemiesTest extends TestCase

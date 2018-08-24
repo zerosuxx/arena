@@ -1,6 +1,6 @@
 <?php
 
-use BattleArena\Weapon;
+use BattleArena\Equipment\Weapon;
 use PHPUnit\Framework\TestCase;
 
 class WeaponTest extends TestCase

@@ -1,6 +1,8 @@
 <?php
 
-namespace BattleArena;
+namespace BattleArena\Character;
+
+use BattleArena\Equipment\EquipmentInterface;
 
 /**
  * Class Hero

@@ -1,8 +1,8 @@
 <?php
 
-use BattleArena\Armour;
-use BattleArena\Hero;
-use BattleArena\Weapon;
+use BattleArena\Equipment\Armour;
+use BattleArena\Equipment\Weapon;
+use BattleArena\Character\Hero;
 use PHPUnit\Framework\TestCase;
 
 class HeroTest extends TestCase

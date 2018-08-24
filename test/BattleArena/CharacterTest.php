@@ -1,17 +1,18 @@
 <?php
 
+use BattleArena\Character\Character;
 use PHPUnit\Framework\TestCase;
 
 class CharacterTest extends TestCase
 {
     /**
-     * @var \BattleArena\Character
+     * @var Character
      */
     private $character;
 
     public function setUp()
     {
-        $this->character = new BattleArena\Character('Tamark', 50, 5);
+        $this->character = new Character('Tamark', 50, 5);
     }
 
     /**
