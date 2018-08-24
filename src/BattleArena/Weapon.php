@@ -8,10 +8,16 @@ namespace BattleArena;
  */
 class Weapon implements EquipmentInterface
 {
+    private $damage;
+
+    public function __construct(int $damage)
+    {
+        $this->damage = $damage;
+    }
 
     public function getDamage(): int
     {
-        return 10;
+        return $this->damage;
     }
 
     public function getDefense(): int
