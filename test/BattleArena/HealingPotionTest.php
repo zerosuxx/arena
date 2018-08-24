@@ -1,6 +1,6 @@
 <?php
 
-use BattleArena\Character\Character;
+use BattleArena\Character\Hero;
 use BattleArena\Consumable\HealingPotion;
 use PHPUnit\Framework\TestCase;
 
@@ -21,7 +21,7 @@ class HealingPotionTest extends TestCase
      */
     public function use_IncreaseCharacterHealth()
     {
-        $character = new Character('Joe', 20, 10);
+        $character = new Hero('Joe', 20, 10);
         $character->takeDamage(10);
         $this->healingPotion->use($character);
         $this->assertEquals(20, $character->getHealth());

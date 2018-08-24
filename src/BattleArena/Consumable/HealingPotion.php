@@ -2,13 +2,13 @@
 
 namespace BattleArena\Consumable;
 
-use BattleArena\Character\CharacterInterface;
+use BattleArena\Character\Hero;
 
 class HealingPotion implements ConsumableInterface
 {
 
-    public function use(CharacterInterface $character): void
+    public function use(Hero $hero): void
     {
-        $character->setHealth($character->getMaxHealth());
+        $hero->setHealth($hero->getMaxHealth());
     }
 }

@@ -2,13 +2,9 @@
 
 namespace BattleArena\Consumable;
 
-use BattleArena\Character\CharacterInterface;
+use BattleArena\Character\Hero;
 
-/**
- * Interface ConsumableInterface
- * @package BattleArena\Consumable
- */
 interface ConsumableInterface
 {
-    public function use(CharacterInterface $character): void;
+    public function use(Hero $hero): void;
 }
