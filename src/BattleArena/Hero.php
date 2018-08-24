@@ -41,7 +41,7 @@ class Hero implements CharacterInterface
      */
     public function getName(): string
     {
-
+        return $this->name;
     }
 
     /**
@@ -49,7 +49,7 @@ class Hero implements CharacterInterface
      */
     public function getHealth(): int
     {
-        // TODO: Implement getHealth() method.
+        return $this->health;
     }
 
     /**
@@ -78,7 +78,7 @@ class Hero implements CharacterInterface
      */
     public function isAlive(): bool
     {
-        // TODO: Implement isAlive() method.
+        return $this->getHealth() > 0;
     }
 
     public function addEquipment(EquipmentInterface $equipment)
