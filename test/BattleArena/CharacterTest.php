@@ -51,6 +51,16 @@ class CharacterTest extends TestCase
     /**
      * @test
      */
+    public function attack_CharacterHas_ReturnsIsNotAlive()
+    {
+        $orc = new Character('Orc', 50, 10);
+        $this->character->attack($orc);
+        $this->assertEquals(45, $orc->getHealth());
+    }
+
+    /**
+     * @test
+     */
     public function isAlive_CharacterHas10Health_ReturnsIsAlive()
     {
         $this->character->takeDamage(10);

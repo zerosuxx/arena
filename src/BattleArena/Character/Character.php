@@ -20,4 +20,9 @@ class Character implements CharacterInterface
     {
         $this->health = $this->getHealth() - $damage;
     }
+
+    public function attack(CharacterInterface $defender)
+    {
+        $defender->takeDamage($this->getDamage());
+    }
 }
