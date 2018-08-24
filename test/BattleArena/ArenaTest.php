@@ -3,6 +3,9 @@
 use BattleArena\Arena;
 use BattleArena\Character\Character;
 use BattleArena\Character\Enemies;
+use BattleArena\Character\Hero;
+use BattleArena\Equipment\Armour;
+use BattleArena\Equipment\Weapon;
 use PHPUnit\Framework\TestCase;
 
 class ArenaTest extends TestCase
@@ -76,4 +79,44 @@ class ArenaTest extends TestCase
         $this->assertEquals('Tamark has won the battle, 45 health left', $arena->battle());
     }
 
+    /**
+     * @test
+     */
+    public function battle_HasHeroWithEquipmentsAndOneEnemy_ReturnsHeroWinsAnnouncement()
+    {
+        $hero = new Hero('Tamark', 50, 4);
+        $hero->addEquipment(new Weapon(2));
+        $hero->addEquipment(new Armour(1));
+
+        $monster = new Character('Orc', 60, 5);
+
+        $arena = new Arena($hero, $monster);
+
+        $announcement = $arena->battle();
+
+        $this->assertEquals(0, $monster->getHealth());
+        $this->assertEquals('Tamark has won the battle, 14 health left', $announcement);
+    }
+
+    /**
+     * @test
+     */
+    public function battle_HasHeroWithEquipmentsAndMultipleEnemies_ReturnsHeroWinsAnnouncement()
+    {
+        $hero = new Hero('Tamark', 50, 5);
+        $hero->addEquipment(new Weapon(5));
+        $hero->addEquipment(new Armour(10));
+
+        $orc = new Character('Orc', 60, 5);
+        $wizard = new Character('Wizard', 20, 10);
+
+        $enemies = new Enemies($orc);
+        $enemies->addEnemy($wizard);
+
+        $arena = new Arena($hero, $enemies);
+
+        $announcement = $arena->battle();
+
+        $this->assertEquals('Tamark has won the battle, 14 health left', $announcement);
+    }
 }
