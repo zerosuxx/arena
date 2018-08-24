@@ -117,6 +117,6 @@ class ArenaTest extends TestCase
 
         $announcement = $arena->battle();
 
-        $this->assertEquals('Tamark has won the battle, 14 health left', $announcement);
+        $this->assertEquals('Tamark has won the battle, 25 health left', $announcement);
     }
 }
