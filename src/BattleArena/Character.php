@@ -43,16 +43,11 @@ class Character implements CharacterInterface
 
     public function takeDamage(int $damage): void
     {
-        $this->setHealth($this->getHealth() - $damage);
+        $this->health = $this->getHealth() - $damage;
     }
 
     public function isAlive(): bool
     {
         return $this->getHealth() > 0;
-    }
-
-    private function setHealth(int $health): void
-    {
-        $this->health = $health;
     }
 }
