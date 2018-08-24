@@ -5,10 +5,6 @@ namespace BattleArena\Character;
 use BattleArena\Consumable\ConsumableInterface;
 use BattleArena\Equipment\EquipmentInterface;
 
-/**
- * Class Hero
- * @package BattleArena
- */
 class Hero implements CharacterInterface
 {
     use SimpleCharacterTrait;
@@ -100,5 +96,4 @@ class Hero implements CharacterInterface
     {
         $this->health = $health;
     }
-
 }
