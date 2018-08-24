@@ -32,8 +32,15 @@ class Arena
     private function fight()
     {
         while (!$this->checkCharactersDie()) {
-            $this->attack($this->attacker, $this->getDefender());
+            $this->turn();
         }
+    }
+
+    private function turn(): void
+    {
+        $defender = $this->getDefender();
+        $this->attacker->attack($defender);
+        $this->attacker = $defender;
     }
 
     private function getWinner(): CharacterInterface
@@ -44,12 +51,6 @@ class Arena
     private function checkCharactersDie(): bool
     {
         return !$this->hero->isAlive() || !$this->monster->isAlive();
-    }
-
-    private function attack(CharacterInterface $attacker, CharacterInterface $defender): void
-    {
-        $defender->takeDamage($attacker->getDamage());
-        $this->attacker = $defender;
     }
 
     private function getDefender(): CharacterInterface
