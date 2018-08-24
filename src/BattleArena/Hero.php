@@ -25,9 +25,9 @@ class Hero implements CharacterInterface
     private $damage;
 
     /**
-     * @var EquipmentInterface
+     * @var EquipmentInterface[]
      */
-    private $equipment;
+    private $equipments = [];
 
     public function __construct(string $name, int $health, int $damage)
     {
@@ -58,7 +58,10 @@ class Hero implements CharacterInterface
     public function getDamage(): int
     {
         $damage = $this->damage;
-        $damage += $this->equipment->getDamage();
+        $damage += array_reduce($this->equipments, function ($sum, EquipmentInterface $equipment) {
+            $sum += $equipment->getDamage();
+            return $sum;
+        }, 0);
         return $damage;
     }
 
@@ -80,6 +83,6 @@ class Hero implements CharacterInterface
 
     public function addEquipment(EquipmentInterface $equipment)
     {
-        $this->equipment = $equipment;
+        $this->equipments[] = $equipment;
     }
 }
