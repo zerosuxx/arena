@@ -8,21 +8,7 @@ namespace BattleArena;
  */
 class Hero implements CharacterInterface
 {
-
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var int
-     */
-    private $health;
-
-    /**
-     * @var int
-     */
-    private $damage;
+    use SimpleCharacterTrait;
 
     /**
      * @var EquipmentInterface[]
@@ -31,25 +17,7 @@ class Hero implements CharacterInterface
 
     public function __construct(string $name, int $health, int $damage)
     {
-        $this->name = $name;
-        $this->health = $health;
-        $this->damage = $damage;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    /**
-     * @return int
-     */
-    public function getHealth(): int
-    {
-        return $this->health;
+        $this->init($name, $health, $damage);
     }
 
     /**
@@ -81,13 +49,8 @@ class Hero implements CharacterInterface
     }
 
     /**
-     * @return bool
+     * @param EquipmentInterface $equipment
      */
-    public function isAlive(): bool
-    {
-        return $this->getHealth() > 0;
-    }
-
     public function addEquipment(EquipmentInterface $equipment)
     {
         $this->equipments[] = $equipment;

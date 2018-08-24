@@ -4,36 +4,11 @@ namespace BattleArena;
 
 class Character implements CharacterInterface
 {
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var int
-     */
-    private $health;
-
-    /**
-     * @var int
-     */
-    private $damage;
+    use SimpleCharacterTrait;
 
     public function __construct(string $name, int $health, int $damage)
     {
-        $this->name = $name;
-        $this->health = $health;
-        $this->damage = $damage;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getHealth(): int
-    {
-        return $this->health;
+        $this->init($name, $health, $damage);
     }
 
     public function getDamage(): int
@@ -44,10 +19,5 @@ class Character implements CharacterInterface
     public function takeDamage(int $damage): void
     {
         $this->health = $this->getHealth() - $damage;
-    }
-
-    public function isAlive(): bool
-    {
-        return $this->getHealth() > 0;
     }
 }
