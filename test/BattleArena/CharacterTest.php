@@ -34,6 +34,16 @@ class CharacterTest extends TestCase
     /**
      * @test
      */
+    public function getMaxHealth_ReturnsCharacterHealthAndMaxHealth()
+    {
+        $this->character->takeDamage(10);
+        $this->assertEquals(40, $this->character->getHealth());
+        $this->assertEquals(50, $this->character->getMaxHealth());
+    }
+
+    /**
+     * @test
+     */
     public function getDamage_ReturnsCharacterDamage()
     {
         $this->assertEquals(5, $this->character->getDamage());
