@@ -71,9 +71,13 @@ class Hero implements CharacterInterface
     public function takeDamage(int $damage): void
     {
         $health = $this->getHealth();
-        $health += $this->equipments[0]->getDefense();
+        $health += array_reduce($this->equipments, function ($sum, EquipmentInterface $equipment) {
+            $sum += $equipment->getDefense();
+            return $sum;
+        }, 0);
+        $health -= $damage;
 
-        $this->health = $health - $damage;
+        $this->health = $health;
     }
 
     /**

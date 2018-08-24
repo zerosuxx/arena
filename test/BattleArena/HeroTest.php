@@ -49,4 +49,16 @@ class HeroTest extends TestCase
 
         $this->assertEquals(50, $this->hero->getHealth());
     }
+
+    /**
+     * @test
+     */
+    public function getHealth_UseMultipleArmour_ReturnsCorrectHealth()
+    {
+        $this->hero->addEquipment(new Armour(25));
+        $this->hero->addEquipment(new Armour(25));
+        $this->hero->takeDamage(10);
+
+        $this->assertEquals(90, $this->hero->getHealth());
+    }
 }
