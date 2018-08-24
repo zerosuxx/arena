@@ -17,6 +17,16 @@ interface CharacterInterface
     /**
      * @return int
      */
+    public function getMaxHealth(): int;
+
+    /**
+     * @return void
+     */
+    public function setHealth(): void;
+
+    /**
+     * @return int
+     */
     public function getDamage(): int;
 
     /**
