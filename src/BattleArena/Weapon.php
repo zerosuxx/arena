@@ -22,6 +22,6 @@ class Weapon implements EquipmentInterface
 
     public function getDefense(): int
     {
-        // TODO: Implement getDefense() method.
+        return 0;
     }
 }
