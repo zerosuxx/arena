@@ -50,14 +50,6 @@ class Arena
     {
         $defender->takeDamage($attacker->getDamage());
         $this->attacker = $defender;
-        echo sprintf(
-            "%s attacks %s and does %d damage (%s has %d health left)\n",
-            $attacker->getName(),
-            $defender->getName(),
-            $attacker->getDamage(),
-            $defender->getName(),
-            $defender->getHealth()
-        );
     }
 
     private function getDefender(): CharacterInterface
