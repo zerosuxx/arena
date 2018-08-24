@@ -15,9 +15,11 @@ class Arena
         $this->monster = $monster;
     }
 
-    public function getAnnouncement(): string
+    public function battle(): string
     {
+        $this->fight();
         $winner = $this->getWinner();
+
         return sprintf(
             '%s has won the battle, %d health left',
             $winner->getName(),
@@ -25,7 +27,7 @@ class Arena
         );
     }
 
-    public function fight()
+    private function fight()
     {
         while (!$this->checkCharactersDie()) {
             $this->attack($this->attacker, $this->getDefender());

@@ -46,7 +46,7 @@ class EnemiesTest extends TestCase
      */
     public function getHealth_HasMultipleEnemiesMinusOneEnemyHealth_ReturnsSumOfHealth()
     {
-        $this->enemies->setHealth($this->enemies->getHealth() - 30);
+        $this->enemies->takeDamage(30);
         $this->assertEquals(30, $this->enemies->getHealth());
     }
 

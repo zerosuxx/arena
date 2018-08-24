@@ -10,11 +10,11 @@ class ArenaTest extends TestCase
     /**
      * @test
      */
-    public function getAnnouncement_HasTwoCharacterNoFight_ReturnsBiggerHealthWinsAnnouncement()
+    public function battle_HasTwoCharacterHeroInstantKillEnemy_ReturnsHeroWinsAnnouncement()
     {
-        $arena = new Arena(new Character('Tamark', 50, 0), new Character('Giant Wolf', 49, 0));
+        $arena = new Arena(new Character('Tamark', 50, 50), new Character('Giant Wolf', 49, 5));
 
-        $this->assertEquals('Tamark has won the battle, 50 health left', $arena->getAnnouncement());
+        $this->assertEquals('Tamark has won the battle, 50 health left', $arena->battle());
     }
 
     /**
@@ -26,7 +26,7 @@ class ArenaTest extends TestCase
      * @param int $monsterDamage
      * @param string $expectedAnnouncement
      */
-    public function getAnnouncement_TwoCharacterFighting_ReturnsAnnouncement(
+    public function battle_TwoCharacterFighting_ReturnsAnnouncement(
         int $heroHealth,
         int $heroDamage,
         int $monsterHealth,
@@ -37,9 +37,7 @@ class ArenaTest extends TestCase
         $monster = new Character('Giant Wolf', $monsterHealth, $monsterDamage);
         $arena = new Arena($hero, $monster);
 
-        $arena->fight();
-
-        $this->assertEquals($expectedAnnouncement, $arena->getAnnouncement());
+        $this->assertEquals($expectedAnnouncement, $arena->battle());
     }
 
     public function announcementProvider()
@@ -55,16 +53,14 @@ class ArenaTest extends TestCase
     /**
      * @test
      */
-    public function getAnnouncement_HasHeroAndMultipleEnemy_ReturnsEnemiesWinsAnnouncement()
+    public function battle_HasHeroAndMultipleEnemy_ReturnsEnemiesWinsAnnouncement()
     {
         $enemies = new Enemies(new Character('Zombie1', 10, 5));
         $enemies->addEnemy(new Character('Zombie2', 10, 50));
 
         $arena = new Arena(new Character('Tamark', 50, 10), $enemies);
 
-        $arena->fight();
-
-        $this->assertEquals('Enemies has won the battle, 10 health left', $arena->getAnnouncement());
+        $this->assertEquals('Enemies has won the battle, 10 health left', $arena->battle());
     }
 
 }
