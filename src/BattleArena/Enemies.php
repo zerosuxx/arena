@@ -40,16 +40,29 @@ class Enemies implements CharacterInterface
         });
     }
 
-    public function setHealth(int $health): void
+    /**
+     * @param int $damage
+     */
+    public function takeDamage(int $damage): void
     {
-        $minusHealth = $this->getHealth() - $health;
-        $index = key($this->enemies);
-        $enemy = $this->enemies[$index];
-        $newHealth = $enemy->getHealth() - $minusHealth;
-        if ($newHealth >= 1) {
-            $enemy->setHealth($newHealth);
-        } else {
-            unset($this->enemies[$index]);
+        $enemy = current($this->enemies);
+
+        if (!$enemy) {
+            return;
         }
+
+        $enemy->takeDamage($damage);
+
+        if (!$enemy->isAlive()) {
+            array_shift($this->enemies);
+        }
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAlive(): bool
+    {
+        return !empty($this->enemies);
     }
 }

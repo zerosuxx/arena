@@ -13,17 +13,12 @@ class Character implements CharacterInterface
      * @var int
      */
     private $health;
+
     /**
      * @var int
      */
     private $damage;
 
-    /**
-     * Character constructor.
-     * @param string $name
-     * @param int $health
-     * @param int $damage
-     */
     public function __construct(string $name, int $health, int $damage)
     {
         $this->name = $name;
@@ -31,45 +26,33 @@ class Character implements CharacterInterface
         $this->damage = $damage;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getHealth(): int
     {
         return $this->health;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getDamage(): int
     {
         return $this->damage;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function setHealth(int $health): void
-    {
-        $this->health = $health;
-    }
-
-    public function takeDamage(int $damage)
+    public function takeDamage(int $damage): void
     {
         $this->setHealth($this->getHealth() - $damage);
     }
 
-    public function isAlive()
+    public function isAlive(): bool
     {
         return $this->getHealth() > 0;
+    }
+
+    private function setHealth(int $health): void
+    {
+        $this->health = $health;
     }
 }

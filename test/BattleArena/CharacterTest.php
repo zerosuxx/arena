@@ -41,15 +41,6 @@ class CharacterTest extends TestCase
     /**
      * @test
      */
-    public function setHealth_AddNewHealth_ReturnsChangedHealth()
-    {
-        $this->character->setHealth(100);
-        $this->assertEquals(100, $this->character->getHealth());
-    }
-
-    /**
-     * @test
-     */
     public function takeDamage_Damaged10_ReturnsNewHealth()
     {
         $this->character->takeDamage(10);
@@ -61,7 +52,7 @@ class CharacterTest extends TestCase
      */
     public function isAlive_CharacterHas10Health_ReturnsIsAlive()
     {
-        $this->character->setHealth(10);
+        $this->character->takeDamage(10);
         $this->assertEquals(true, $this->character->isAlive());
     }
 
@@ -70,7 +61,7 @@ class CharacterTest extends TestCase
      */
     public function isAlive_CharacterHas0Health_ReturnsIsNotAlive()
     {
-        $this->character->setHealth(0);
+        $this->character->takeDamage(50);
         $this->assertEquals(false, $this->character->isAlive());
     }
 }

@@ -39,12 +39,12 @@ class Arena
 
     private function checkCharactersDie(): bool
     {
-        return $this->hero->getHealth() < 1 || $this->monster->getHealth() < 1;
+        return !$this->hero->isAlive() || !$this->monster->isAlive();
     }
 
     private function attack(CharacterInterface $attacker, CharacterInterface $defender): void
     {
-        $defender->setHealth($defender->getHealth() - $attacker->getDamage());
+        $defender->takeDamage($attacker->getDamage());
         $this->attacker = $defender;
     }
 

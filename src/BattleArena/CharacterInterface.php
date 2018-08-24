@@ -18,11 +18,6 @@ interface CharacterInterface
     public function getDamage(): int;
 
     /**
-     * @param int $health
-     */
-    public function setHealth(int $health): void;
-
-    /**
      * @param int $damage
      */
     public function takeDamage(int $damage): void;
