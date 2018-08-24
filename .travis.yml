@@ -1,0 +1,8 @@
+language: php
+php:
+  - 7.2
+
+before_script:
+  - curl -o /usr/local/bin/phpunit https://phar.phpunit.de/phpunit-7.phar
+
+script: phpunit --no-coverage
