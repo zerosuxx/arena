@@ -25,6 +25,11 @@ interface CharacterInterface
     public function takeDamage(int $damage): void;
 
     /**
+     * @param CharacterInterface $defender
+     */
+    public function attack(CharacterInterface $defender): void;
+
+    /**
      * @return bool
      */
     public function isAlive(): bool;

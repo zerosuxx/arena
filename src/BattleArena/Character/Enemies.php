@@ -58,6 +58,11 @@ class Enemies implements CharacterInterface
         }
     }
 
+    public function attack(CharacterInterface $defender): void
+    {
+        $defender->takeDamage($this->getDamage());
+    }
+
     /**
      * @return bool
      */

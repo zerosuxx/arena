@@ -40,5 +40,4 @@ trait SimpleCharacterTrait
     {
         return $this->getHealth() > 0;
     }
-
 }

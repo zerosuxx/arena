@@ -51,6 +51,12 @@ class Hero implements CharacterInterface
         $this->health = $health;
     }
 
+    public function attack(CharacterInterface $defender): void
+    {
+
+        $defender->takeDamage($this->getDamage());
+    }
+
     /**
      * @param EquipmentInterface $equipment
      */
