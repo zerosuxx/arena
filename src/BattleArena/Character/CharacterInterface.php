@@ -20,9 +20,10 @@ interface CharacterInterface
     public function getMaxHealth(): int;
 
     /**
+     * @param int $health
      * @return void
      */
-    public function setHealth(): void;
+    public function setHealth(int $health): void;
 
     /**
      * @return int
