@@ -24,7 +24,7 @@ class Enemies implements CharacterInterface
         return array_reduce($this->enemies, function ($sum, CharacterInterface $character) {
             $sum += $character->getHealth();
             return $sum;
-        });
+        }, 0);
     }
 
     public function getName(): string
@@ -37,7 +37,7 @@ class Enemies implements CharacterInterface
         return array_reduce($this->enemies, function ($sum, CharacterInterface $character) {
             $sum += $character->getDamage();
             return $sum;
-        });
+        }, 0);
     }
 
     /**
