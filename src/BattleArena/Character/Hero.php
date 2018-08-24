@@ -65,9 +65,10 @@ class Hero implements CharacterInterface
 
     public function attack(CharacterInterface $defender): void
     {
-
-        if ($defender->getHealth() > $this->getDamage() && $defender->getDamage() >= $this->getHealth()) {
-            $this->consumables[0]->use($this);
+        $consumable = current($this->consumables);
+        if ($consumable && $defender->getHealth() > $this->getDamage() && $defender->getDamage() >= $this->getHealth()) {
+            $consumable->use($this);
+            array_shift($this->consumables);
             return;
         }
 
