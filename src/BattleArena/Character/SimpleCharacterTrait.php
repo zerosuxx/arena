@@ -12,11 +12,6 @@ trait SimpleCharacterTrait
     /**
      * @var int
      */
-    private $maxHealth;
-
-    /**
-     * @var int
-     */
     private $health;
 
     /**
@@ -27,7 +22,7 @@ trait SimpleCharacterTrait
     private function init(string $name, int $health, int $damage)
     {
         $this->name = $name;
-        $this->maxHealth = $health;
+
         $this->health = $health;
         $this->damage = $damage;
     }
@@ -37,19 +32,9 @@ trait SimpleCharacterTrait
         return $this->name;
     }
 
-    public function getMaxHealth(): int
-    {
-        return $this->maxHealth;
-    }
-
     public function getHealth(): int
     {
         return $this->health;
-    }
-
-    public function setHealth(int $health): void
-    {
-        $this->health = $health;
     }
 
     public function isAlive(): bool

@@ -2,6 +2,7 @@
 
 namespace BattleArena\Character;
 
+use BattleArena\Consumable\ConsumableInterface;
 use BattleArena\Equipment\EquipmentInterface;
 
 /**
@@ -13,13 +14,24 @@ class Hero implements CharacterInterface
     use SimpleCharacterTrait;
 
     /**
+     * @var int
+     */
+    private $maxHealth;
+
+    /**
      * @var EquipmentInterface[]
      */
     private $equipments = [];
 
+    /**
+     * @var ConsumableInterface[]
+     */
+    private $consumables = [];
+
     public function __construct(string $name, int $health, int $damage)
     {
         $this->init($name, $health, $damage);
+        $this->maxHealth = $health;
     }
 
     /**
@@ -54,6 +66,11 @@ class Hero implements CharacterInterface
     public function attack(CharacterInterface $defender): void
     {
 
+        if ($defender->getHealth() > $this->getDamage() && $defender->getDamage() >= $this->getHealth()) {
+            $this->consumables[0]->use($this);
+            return;
+        }
+
         $defender->takeDamage($this->getDamage());
     }
 
@@ -64,4 +81,23 @@ class Hero implements CharacterInterface
     {
         $this->equipments[] = $equipment;
     }
+
+    /**
+     * @param ConsumableInterface $consumable
+     */
+    public function addConsumable(ConsumableInterface $consumable)
+    {
+        $this->consumables[] = $consumable;
+    }
+
+    public function getMaxHealth(): int
+    {
+        return $this->maxHealth;
+    }
+
+    public function setHealth(int $health): void
+    {
+        $this->health = $health;
+    }
+
 }

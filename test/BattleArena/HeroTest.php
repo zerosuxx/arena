@@ -1,5 +1,7 @@
 <?php
 
+use BattleArena\Character\Character;
+use BattleArena\Consumable\HealingPotion;
 use BattleArena\Equipment\Armour;
 use BattleArena\Equipment\Weapon;
 use BattleArena\Character\Hero;
@@ -17,6 +19,25 @@ class HeroTest extends TestCase
         $this->hero = new Hero('Tamark', 50, 10);
     }
 
+    /**
+     * @test
+     */
+    public function getMaxHealth_ReturnsheroHealthAndMaxHealth()
+    {
+        $this->hero->takeDamage(10);
+        $this->assertEquals(40, $this->hero->getHealth());
+        $this->assertEquals(50, $this->hero->getMaxHealth());
+    }
+
+    /**
+     * @test
+     */
+    public function setHealth_SetNewHealth_ReturnsNewHealth()
+    {
+        $this->hero->setHealth(80);
+        $this->assertEquals(80, $this->hero->getHealth());
+    }
+    
     /**
      * @test
      */
@@ -59,6 +80,21 @@ class HeroTest extends TestCase
         $this->hero->addEquipment(new Armour(25));
         $this->hero->takeDamage(49);
 
+        $this->assertEquals(50, $this->hero->getHealth());
+    }
+
+    /**
+     * @test
+     */
+    public function getHealth_UseOneHealingPotionConsumableAndNotAttack_ReturnsFullHealth()
+    {
+        $this->hero->addConsumable(new HealingPotion());
+
+        $monster = new Character('Orc', 60, 40);
+        $monster->attack($this->hero);
+        $this->hero->attack($monster);
+
+        $this->assertEquals(60, $monster->getHealth());
         $this->assertEquals(50, $this->hero->getHealth());
     }
 }
