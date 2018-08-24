@@ -91,3 +91,46 @@ T5:
   Hero attacks Zombie_1 and does 4 damage (Zombie_1 has 0 health left)
   Zombie_2 attacks Hero and does 3 damage (Hero has 23 health left)
 ```
+
+## Level 3: Equipment
+   
+Equipped items may change certain calculations in combat.
+Eg: An armour with the defense of 1 will reduce the damage taken by it's wearer by 1.
+A weapon with the damage of 2 will increase the total damage of your Hero by 2.
+
+Your hero will fight agains an Orc.
+
+```
+Hero's parameters:
+{
+ "name": "choose_name",
+ "health": 50,
+ "base_damage": 4,
+ "equipment": [
+   {
+     "type": "armour",
+     "defense": 1
+   },
+   {
+     "type": "weapon",
+     "damage": 2
+   }
+ ]
+}
+
+Orc looks like this:
+{
+ "name": "Orc",
+ "health": 60,
+ "base_damage": 5
+}
+```
+### A sample battle:
+```
+Turn 1:
+ Hero attacks Orc and does 4+2 damage (Orc has 54 health left)
+ Orc attacks Hero and does 5-1 damage (Hero has 46 health left)
+T2:
+ Hero attacks Orc and does 4+2 damage (Orc has 8 health left)
+ Orc attacks Hero and does 5-1 damage (Hero has 44 health left)
+```
