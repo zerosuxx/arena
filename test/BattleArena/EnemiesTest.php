@@ -44,10 +44,21 @@ class EnemiesTest extends TestCase
     /**
      * @test
      */
-    public function getHealth_HasMultipleEnemiesMinusOneEnemyHealth_ReturnsSumOfHealth()
+    public function getHealth_HasMultipleEnemiesTakeDamageOneTime_ReturnsSumOfHealth()
     {
         $this->enemies->takeDamage(30);
         $this->assertEquals(30, $this->enemies->getHealth());
+    }
+
+    /**
+     * @test
+     */
+    public function getHealth_HasMultipleEnemiesTakeDamageThreeTimes_ReturnsSumOfHealth()
+    {
+        $this->enemies->takeDamage(30);
+        $this->enemies->takeDamage(30);
+        $this->enemies->takeDamage(30);
+        $this->assertEquals(0, $this->enemies->getHealth());
     }
 
 }

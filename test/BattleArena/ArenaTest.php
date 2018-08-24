@@ -63,4 +63,17 @@ class ArenaTest extends TestCase
         $this->assertEquals('Enemies has won the battle, 10 health left', $arena->battle());
     }
 
+    /**
+     * @test
+     */
+    public function battle_HasHeroAndMultipleEnemy_ReturnsHeroWinsAnnouncement()
+    {
+        $enemies = new Enemies(new Character('Zombie1', 10, 5));
+        $enemies->addEnemy(new Character('Zombie2', 10, 5));
+
+        $arena = new Arena(new Character('Tamark', 50, 20), $enemies);
+
+        $this->assertEquals('Tamark has won the battle, 45 health left', $arena->battle());
+    }
+
 }
