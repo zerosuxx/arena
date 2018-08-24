@@ -3,8 +3,6 @@ php:
   - 7.2
 
 before_script:
-  - mkdir /usr/local/bin
-  - curl -o /usr/local/bin/phpunit -L https://phar.phpunit.de/phpunit-7.phar
-  - chmod +x /usr/local/bin/phpunit
+  - composer install
 
-script: phpunit --no-coverage
+script: vendor/bin/phpunit --no-coverage
