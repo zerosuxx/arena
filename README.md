@@ -212,3 +212,53 @@ T10:
   Hero comsumes a healing_potion (Hero has 50 health left)
   Orc_2 attacks Hero and does 5-2 damage (Hero has 47 health left)
 ```
+
+## Level 5: Special attack
+
+Your Hero have has learnt a special attack that stuns the enemy it hits.
+The Stun attack takes a lots of energy to perform so can only be used in every fifth turn.
+The Stun attack's base damage is 2 (+ other damage modifiers like weapon) and the stunned
+monster cannot attack for 3 turns.
+
+Your hero will fight agains three Imps.
+```
+Hero's parameters:
+{
+  "name": "choose_name",
+  "health": 50,
+  "base_damage": 4,
+  "equipment": [
+    {
+      "type": "armour",
+      "defense": 1
+    },
+    {
+      "type": "weapon",
+      "damage": 2
+    }
+  ],
+  "skills": [
+    {
+      "name": "Stun attack",
+      "base_damage": 2,
+      "description": "Stuns for 3 turns"
+    }
+  ]
+}
+
+Imps looks like this:
+{
+  "name": "Imp",
+  "health": 25,
+  "base_damage": 3
+}
+```
+### A sample battle:
+```
+Turn 1:
+  Hero attacks Orc and does 4+2 damage (Orc has 54 health left)
+  Orc attacks Hero and does 5-1 damage (Hero has 46 health left)
+T2:
+  Hero attacks Orc and does 4+2 damage (Orc has 8 health left)
+  Orc attacks Hero and does 5-1 damage (Hero has 44 health left)
+```
