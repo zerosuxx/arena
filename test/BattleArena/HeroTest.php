@@ -57,7 +57,7 @@ class HeroTest extends TestCase
     {
         $this->hero->addEquipment(new Armour(25));
         $this->hero->addEquipment(new Armour(25));
-        $this->hero->takeDamage(10);
+        $this->hero->takeDamage(44);
 
         $this->assertEquals(50, $this->hero->getHealth());
     }

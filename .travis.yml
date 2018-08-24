@@ -3,6 +3,8 @@ php:
   - 7.2
 
 before_script:
-  - curl -o /usr/bin/phpunit -L https://phar.phpunit.de/phpunit-7.phar
+  - mkdir /usr/local/bin
+  - curl -o /usr/local/bin/phpunit -L https://phar.phpunit.de/phpunit-7.phar
+  - chmod +x /usr/local/bin/phpunit
 
 script: phpunit --no-coverage
