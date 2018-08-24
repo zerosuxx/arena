@@ -70,7 +70,10 @@ class Hero implements CharacterInterface
      */
     public function takeDamage(int $damage): void
     {
-        // TODO: Implement takeDamage() method.
+        $health = $this->getHealth();
+        $health += $this->equipments[0]->getDefense();
+
+        $this->health = $health - $damage;
     }
 
     /**
