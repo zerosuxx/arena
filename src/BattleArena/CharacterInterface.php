@@ -5,6 +5,9 @@ namespace BattleArena;
 
 interface CharacterInterface
 {
+    /**
+     * @return string
+     */
     public function getName(): string;
 
     /**
