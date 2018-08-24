@@ -47,6 +47,11 @@ trait SimpleCharacterTrait
         return $this->health;
     }
 
+    public function setHealth(int $health): void
+    {
+        $this->health = $health;
+    }
+
     public function isAlive(): bool
     {
         return $this->getHealth() > 0;
