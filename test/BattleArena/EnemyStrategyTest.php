@@ -1,6 +1,6 @@
 <?php
 
-use BattleArena\AttackAction;
+use BattleArena\Action\AttackAction;
 use BattleArena\Character\Hero;
 use BattleArena\EnemyStrategy;
 use BattleArena\Players;

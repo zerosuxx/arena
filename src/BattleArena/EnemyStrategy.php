@@ -2,6 +2,8 @@
 
 namespace BattleArena;
 
+use BattleArena\Action\AttackAction;
+
 /**
  * Class EnemyStrategy
  * @package BattleArena

@@ -1,6 +1,6 @@
 <?php
 
-use BattleArena\AttackAction;
+use BattleArena\Action\AttackAction;
 use PHPUnit\Framework\TestCase;
 
 class AttackActionTest extends TestCase

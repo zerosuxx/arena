@@ -1,10 +1,10 @@
 <?php
 
-namespace BattleArena;
+namespace BattleArena\Action;
 
 use BattleArena\Character\CharacterInterface;
 
-class AttackAction
+class AttackAction implements ActionInterface
 {
     private $attacker;
 
