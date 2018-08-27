@@ -2,13 +2,10 @@
 
 namespace BattleArena;
 
+use BattleArena\Character\CharacterInterface;
 use BattleArena\Character\Hero;
-use BattleArena\Character\Monster;
+use BattleArena\Character\enemy;
 
-/**
- * Class Turn
- * @package BattleArena
- */
 class Turn
 {
     /**
@@ -16,14 +13,14 @@ class Turn
      */
     private $hero;
     /**
-     * @var Monster
+     * @var CharacterInterface
      */
-    private $monster;
+    private $enemy;
 
-    public function __construct(Hero $hero, Monster $monster)
+    public function __construct(Hero $hero, CharacterInterface $enemy)
     {
         $this->hero = $hero;
-        $this->monster = $monster;
+        $this->enemy = $enemy;
     }
 
     /**
@@ -35,18 +32,18 @@ class Turn
     }
 
     /**
-     * @return Monster
+     * @return CharacterInterface
      */
-    public function getMonster(): Monster
+    public function getenemy(): CharacterInterface
     {
-        return $this->monster;
+        return $this->enemy;
     }
 
     public function doTurn()
     {
-        $this->hero->attack($this->monster);
-        if ($this->monster->isAlive()) {
-            $this->monster->attack($this->hero);
+        $this->hero->attack($this->enemy);
+        if ($this->enemy->isAlive()) {
+            $this->enemy->attack($this->hero);
         }
     }
 }
