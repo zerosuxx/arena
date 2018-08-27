@@ -4,6 +4,7 @@ namespace BattleArena\Character;
 
 use BattleArena\Consumable\ConsumableInterface;
 use BattleArena\Equipment\EquipmentInterface;
+use phpDocumentor\Reflection\DocBlock\Tags\Factory\Strategy;
 
 class Hero extends Character implements CharacterInterface
 {
@@ -26,14 +27,6 @@ class Hero extends Character implements CharacterInterface
     {
         parent::__construct($name, $health, $damage);
         $this->maxHealth = $health;
-    }
-
-    private function arraySum(array $data, callable $callback, int $start = 0)
-    {
-        return array_reduce($data, function ($sum, $value) use ($callback) {
-            $sum += $callback($value);
-            return $sum;
-        }, $start);
     }
 
     /**
@@ -108,5 +101,19 @@ class Hero extends Character implements CharacterInterface
     private function canUseHealingPotion(CharacterInterface $defender, $consumable): bool
     {
         return $consumable && $defender->getHealth() > $this->getDamage() && $defender->getDamage() >= $this->getHealth();
+    }
+
+    /**
+     * @param array $data
+     * @param callable $callback
+     * @param int $start [optional]
+     * @return int
+     */
+    private function arraySum(array $data, callable $callback, int $start = 0)
+    {
+        return array_reduce($data, function ($sum, $value) use ($callback) {
+            $sum += $callback($value);
+            return $sum;
+        }, $start);
     }
 }
