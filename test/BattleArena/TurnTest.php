@@ -24,4 +24,12 @@ class TurnTest extends TestCase
     {
         $this->assertInstanceOf(Hero::class, $this->turn->getHero());
     }
+
+    /**
+     * @test
+     */
+    public function getMonster_ReturnsMonsterInstance()
+    {
+        $this->assertInstanceOf(Monster::class, $this->turn->getMonster());
+    }
 }

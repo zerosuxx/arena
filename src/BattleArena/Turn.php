@@ -34,5 +34,11 @@ class Turn
         return $this->hero;
     }
 
-
+    /**
+     * @return Monster
+     */
+    public function getMonster(): Monster
+    {
+        return $this->monster;
+    }
 }
