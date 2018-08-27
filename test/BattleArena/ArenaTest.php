@@ -16,7 +16,7 @@ class ArenaTest extends TestCase
      */
     public function battle_HasTwoCharacterHeroInstantKillEnemy_ReturnsHeroWinsAnnouncement()
     {
-        $arena = new Arena(new Monster('Tamark', 50, 50), new Monster('Giant Wolf', 49, 5));
+        $arena = new Arena(new Hero('Tamark', 50, 50), new Monster('Giant Wolf', 49, 5));
 
         $this->assertEquals('Tamark has won the battle, 50 health left', $arena->battle());
     }
@@ -37,7 +37,7 @@ class ArenaTest extends TestCase
         int $monsterDamage,
         string $expectedAnnouncement
     ) {
-        $hero = new Monster('Tamark', $heroHealth, $heroDamage);
+        $hero = new Hero('Tamark', $heroHealth, $heroDamage);
         $monster = new Monster('Giant Wolf', $monsterHealth, $monsterDamage);
         $arena = new Arena($hero, $monster);
 
@@ -62,7 +62,7 @@ class ArenaTest extends TestCase
         $enemies = new Enemies(new Monster('Zombie1', 10, 5));
         $enemies->addEnemy(new Monster('Zombie2', 10, 50));
 
-        $arena = new Arena(new Monster('Tamark', 50, 10), $enemies);
+        $arena = new Arena(new Hero('Tamark', 50, 10), $enemies);
 
         $this->assertEquals('Enemies has won the battle, 10 health left', $arena->battle());
     }
@@ -75,7 +75,7 @@ class ArenaTest extends TestCase
         $enemies = new Enemies(new Monster('Zombie1', 10, 5));
         $enemies->addEnemy(new Monster('Zombie2', 10, 5));
 
-        $arena = new Arena(new Monster('Tamark', 50, 20), $enemies);
+        $arena = new Arena(new Hero('Tamark', 50, 20), $enemies);
 
         $this->assertEquals('Tamark has won the battle, 45 health left', $arena->battle());
     }
