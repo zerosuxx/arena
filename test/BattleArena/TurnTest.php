@@ -42,7 +42,7 @@ class TurnTest extends TestCase
      */
     public function getMonster_ReturnsMonsterInstance()
     {
-        $this->assertInstanceOf(Monster::class, $this->turn->getMonster());
+        $this->assertInstanceOf(Monster::class, $this->turn->getEnemy());
     }
 
     /**

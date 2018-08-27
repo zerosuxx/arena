@@ -4,7 +4,6 @@ namespace BattleArena;
 
 use BattleArena\Character\CharacterInterface;
 use BattleArena\Character\Hero;
-use BattleArena\Character\enemy;
 
 class Turn
 {
@@ -34,7 +33,7 @@ class Turn
     /**
      * @return CharacterInterface
      */
-    public function getenemy(): CharacterInterface
+    public function getEnemy(): CharacterInterface
     {
         return $this->enemy;
     }
