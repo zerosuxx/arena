@@ -2,15 +2,12 @@
 
 namespace BattleArena;
 
+use BattleArena\Action\ActionInterface;
 use BattleArena\Action\AttackAction;
 
-/**
- * Class EnemyStrategy
- * @package BattleArena
- */
-class EnemyStrategy
+class EnemyStrategy implements StrategyInterface
 {
-    public function getAction(Players $players)
+    public function getNextAction(Players $players): ActionInterface
     {
         return new AttackAction($players->getHero());
     }

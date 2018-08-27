@@ -21,7 +21,7 @@ class EnemyStrategyTest extends TestCase
             ->willReturn($this->createMock(Hero::class));
 
         $strategy = new EnemyStrategy();
-        $action = $strategy->getAction($playersMock);
+        $action = $strategy->getNextAction($playersMock);
         $this->assertInstanceOf(AttackAction::class, $action);
     }
 }
