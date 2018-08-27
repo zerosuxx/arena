@@ -2,7 +2,7 @@
 
 namespace BattleArena\Character;
 
-class Character
+class Character implements CharacterInterface
 {
     /**
      * @var string
@@ -39,5 +39,26 @@ class Character
     public function isAlive(): bool
     {
         return $this->getHealth() > 0;
+    }
+
+    public function getDamage(): int
+    {
+        return $this->damage;
+    }
+
+    public function takeDamage(int $damage): void
+    {
+        $this->health = $this->getHealth() - $damage;
+    }
+
+    public function attack(CharacterInterface $defender): void
+    {
+        $defender->takeDamage($this->getDamage());
+
+    }
+
+    public function playTurn(Players $players)
+    {
+        $this->strategy->getNextAction($players)->perform($this);
     }
 }

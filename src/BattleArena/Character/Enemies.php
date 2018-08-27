@@ -60,7 +60,7 @@ class Enemies implements CharacterInterface
 
     public function attack(CharacterInterface $defender): void
     {
-        $defender->takeDamage($this->getDamage());
+        $defender->takeDamage($this->getDamage(), count($this->enemies));
     }
 
     /**

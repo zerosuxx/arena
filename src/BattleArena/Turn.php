@@ -2,6 +2,8 @@
 
 namespace BattleArena;
 
+use BattleArena\Character\Players;
+
 class Turn
 {
 

@@ -3,7 +3,7 @@
 use BattleArena\Character\CharacterInterface;
 use BattleArena\Character\Hero;
 use BattleArena\Character\Monster;
-use BattleArena\Players;
+use BattleArena\Character\Players;
 use PHPUnit\Framework\TestCase;
 
 class PlayersTest extends TestCase

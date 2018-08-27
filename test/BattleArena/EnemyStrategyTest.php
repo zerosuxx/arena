@@ -2,8 +2,8 @@
 
 use BattleArena\Action\AttackAction;
 use BattleArena\Character\Hero;
+use BattleArena\Character\Players;
 use BattleArena\EnemyStrategy;
-use BattleArena\Players;
 use PHPUnit\Framework\TestCase;
 
 class EnemyStrategyTest extends TestCase

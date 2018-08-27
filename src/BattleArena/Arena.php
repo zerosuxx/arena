@@ -4,6 +4,7 @@ namespace BattleArena;
 
 use BattleArena\Character\CharacterInterface;
 use BattleArena\Character\Hero;
+use BattleArena\Character\Players;
 
 class Arena
 {

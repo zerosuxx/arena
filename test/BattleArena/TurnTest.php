@@ -1,9 +1,8 @@
 <?php
 
-use BattleArena\Character\CharacterInterface;
 use BattleArena\Character\Hero;
 use BattleArena\Character\Monster;
-use BattleArena\Players;
+use BattleArena\Character\Players;
 use BattleArena\Turn;
 use PHPUnit\Framework\TestCase;
 

@@ -4,6 +4,7 @@ namespace BattleArena;
 
 use BattleArena\Action\ActionInterface;
 use BattleArena\Action\AttackAction;
+use BattleArena\Character\Players;
 
 class EnemyStrategy implements StrategyInterface
 {

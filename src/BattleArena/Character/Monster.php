@@ -2,20 +2,19 @@
 
 namespace BattleArena\Character;
 
+use BattleArena\EnemyStrategy;
+use BattleArena\StrategyInterface;
+
 class Monster extends Character implements CharacterInterface
 {
-    public function getDamage(): int
-    {
-        return $this->damage;
-    }
+    /**
+     * @var StrategyInterface
+     */
+    private $strategy;
 
-    public function takeDamage(int $damage): void
+    public function __construct(string $name, int $health, int $damage, StrategyInterface $strategy = null)
     {
-        $this->health = $this->getHealth() - $damage;
-    }
-
-    public function attack(CharacterInterface $defender): void
-    {
-        $defender->takeDamage($this->getDamage());
+        parent::__construct($name, $health, $damage);
+        $this->strategy = $strategy ? $strategy : new EnemyStrategy();
     }
 }

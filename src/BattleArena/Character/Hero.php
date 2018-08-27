@@ -4,8 +4,6 @@ namespace BattleArena\Character;
 
 use BattleArena\Consumable\ConsumableInterface;
 use BattleArena\Equipment\EquipmentInterface;
-use BattleArena\Players;
-use BattleArena\Turn;
 
 class Hero extends Character implements CharacterInterface
 {
@@ -44,10 +42,10 @@ class Hero extends Character implements CharacterInterface
     /**
      * @param int $damage
      */
-    public function takeDamage(int $damage): void
+    public function takeDamage(int $damage, int $multiplier = 1): void
     {
-        $damage -= $this->arraySum($this->equipments, function (EquipmentInterface $equipment) {
-            return $equipment->getDefense();
+        $damage -= $this->arraySum($this->equipments, function (EquipmentInterface $equipment) use ($multiplier) {
+            return $equipment->getDefense() * $multiplier;
         });
 
         $health = $this->getHealth();
@@ -56,6 +54,9 @@ class Hero extends Character implements CharacterInterface
         $this->health = $health;
     }
 
+    /**
+     * @param Players $players
+     */
     public function playTurn(Players $players)
     {
         $this->attack($players->getEnemy());
@@ -121,5 +122,19 @@ class Hero extends Character implements CharacterInterface
             $sum += $callback($value);
             return $sum;
         }, $start);
+    }
+
+    /**
+     * Count elements of an object
+     * @link http://php.net/manual/en/countable.count.php
+     * @return int The custom count as an integer.
+     * </p>
+     * <p>
+     * The return value is cast to an integer.
+     * @since 5.1.0
+     */
+    public function count()
+    {
+        return 1;
     }
 }

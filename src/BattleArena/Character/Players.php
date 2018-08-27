@@ -1,6 +1,6 @@
 <?php
 
-namespace BattleArena;
+namespace BattleArena\Character;
 
 use BattleArena\Character\CharacterInterface;
 use BattleArena\Character\Hero;
