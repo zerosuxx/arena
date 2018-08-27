@@ -12,9 +12,21 @@ class TurnTest extends TestCase
      */
     private $turn;
 
+    /**
+     * @var Hero
+     */
+    private $hero;
+
+    /**
+     * @var Monster
+     */
+    private $monster;
+
     protected function setUp()
     {
-        $this->turn = new Turn(new Hero('Tamark', 10, 10), new Monster('Wolf', 1, 1));
+        $this->hero = new Hero('Tamark', 2, 1);
+        $this->monster = new Monster('Wolf', 2, 1);
+        $this->turn = new Turn($this->hero, $this->monster);
     }
 
     /**
@@ -31,5 +43,15 @@ class TurnTest extends TestCase
     public function getMonster_ReturnsMonsterInstance()
     {
         $this->assertInstanceOf(Monster::class, $this->turn->getMonster());
+    }
+
+    /**
+     * @test
+     */
+    public function doTurn_HeroAttackedMonsterAndMonsterAttackedHero_DecreaseHealths()
+    {
+        $this->turn->doTurn();
+        $this->assertEquals(1, $this->hero->getHealth());
+        $this->assertEquals(1, $this->monster->getHealth());
     }
 }

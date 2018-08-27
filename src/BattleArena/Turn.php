@@ -41,4 +41,12 @@ class Turn
     {
         return $this->monster;
     }
+
+    public function doTurn()
+    {
+        $this->hero->attack($this->monster);
+        if ($this->monster->isAlive()) {
+            $this->monster->attack($this->hero);
+        }
+    }
 }
