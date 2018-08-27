@@ -3,18 +3,19 @@
 namespace BattleArena;
 
 use BattleArena\Character\CharacterInterface;
+use BattleArena\Character\Hero;
 
 class Arena
 {
-    private $attacker;
     private $hero;
     private $monster;
+    private $turn;
 
-    public function __construct(CharacterInterface $hero, CharacterInterface $monster)
+    public function __construct(Hero $hero, CharacterInterface $monster)
     {
-        $this->attacker = $hero;
         $this->hero = $hero;
         $this->monster = $monster;
+        $this->turn = new Turn($hero, $monster);
     }
 
     public function battle(): string
@@ -32,15 +33,8 @@ class Arena
     private function fight()
     {
         while (!$this->checkCharactersDie()) {
-            $this->turn();
+            $this->turn->doTurn();
         }
-    }
-
-    private function turn(): void
-    {
-        $defender = $this->getDefender();
-        $this->attacker->attack($defender);
-        $this->attacker = $defender;
     }
 
     private function getWinner(): CharacterInterface
@@ -51,10 +45,5 @@ class Arena
     private function checkCharactersDie(): bool
     {
         return !$this->hero->isAlive() || !$this->monster->isAlive();
-    }
-
-    private function getDefender(): CharacterInterface
-    {
-        return $this->attacker === $this->hero ? $this->monster : $this->hero;
     }
 }
