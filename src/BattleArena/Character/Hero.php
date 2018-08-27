@@ -4,7 +4,6 @@ namespace BattleArena\Character;
 
 use BattleArena\Consumable\ConsumableInterface;
 use BattleArena\Equipment\EquipmentInterface;
-use phpDocumentor\Reflection\DocBlock\Tags\Factory\Strategy;
 
 class Hero extends Character implements CharacterInterface
 {
