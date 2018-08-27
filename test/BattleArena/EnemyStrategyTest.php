@@ -11,7 +11,7 @@ class EnemyStrategyTest extends TestCase
     /**
      * @test
      */
-    public function getAction()
+    public function getAction_ReturnsAttackAction()
     {
 
         $playersMock = $this->createMock(Players::class);
