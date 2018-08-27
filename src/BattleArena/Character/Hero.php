@@ -4,6 +4,8 @@ namespace BattleArena\Character;
 
 use BattleArena\Consumable\ConsumableInterface;
 use BattleArena\Equipment\EquipmentInterface;
+use BattleArena\Players;
+use BattleArena\Turn;
 
 class Hero extends Character implements CharacterInterface
 {
@@ -52,6 +54,11 @@ class Hero extends Character implements CharacterInterface
         $health -= max(0, $damage);
 
         $this->health = $health;
+    }
+
+    public function playTurn(Players $players)
+    {
+        $this->attack($players->getEnemy());
     }
 
     public function attack(CharacterInterface $defender): void

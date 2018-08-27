@@ -10,12 +10,14 @@ class Arena
     private $hero;
     private $monster;
     private $turn;
+    private $players;
 
     public function __construct(Hero $hero, CharacterInterface $monster)
     {
         $this->hero = $hero;
         $this->monster = $monster;
-        $this->turn = new Turn($hero, $monster);
+        $this->turn = new Turn();
+        $this->players = new Players($hero, $monster);
     }
 
     public function battle(): string
@@ -33,7 +35,7 @@ class Arena
     private function fight()
     {
         while (!$this->checkCharactersDie()) {
-            $this->turn->doTurn();
+            $this->turn->doTurn($this->players);
         }
     }
 

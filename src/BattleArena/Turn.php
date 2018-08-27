@@ -2,47 +2,16 @@
 
 namespace BattleArena;
 
-use BattleArena\Character\CharacterInterface;
-use BattleArena\Character\Hero;
-
 class Turn
 {
-    /**
-     * @var Hero
-     */
-    private $hero;
-    /**
-     * @var CharacterInterface
-     */
-    private $enemy;
 
-    public function __construct(Hero $hero, CharacterInterface $enemy)
+    public function doTurn(Players $players)
     {
-        $this->hero = $hero;
-        $this->enemy = $enemy;
-    }
-
-    /**
-     * @return Hero
-     */
-    public function getHero(): Hero
-    {
-        return $this->hero;
-    }
-
-    /**
-     * @return CharacterInterface
-     */
-    public function getEnemy(): CharacterInterface
-    {
-        return $this->enemy;
-    }
-
-    public function doTurn()
-    {
-        $this->hero->attack($this->enemy);
-        if ($this->enemy->isAlive()) {
-            $this->enemy->attack($this->hero);
+        $hero = $players->getHero();
+        $enemy = $players->getEnemy();
+        $hero->playTurn($players);
+        if ($enemy->isAlive()) {
+            $enemy->attack($hero);
         }
     }
 }

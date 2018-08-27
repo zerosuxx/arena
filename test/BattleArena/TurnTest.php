@@ -1,7 +1,9 @@
 <?php
 
+use BattleArena\Character\CharacterInterface;
 use BattleArena\Character\Hero;
 use BattleArena\Character\Monster;
+use BattleArena\Players;
 use BattleArena\Turn;
 use PHPUnit\Framework\TestCase;
 
@@ -12,37 +14,9 @@ class TurnTest extends TestCase
      */
     private $turn;
 
-    /**
-     * @var Hero
-     */
-    private $hero;
-
-    /**
-     * @var Monster
-     */
-    private $monster;
-
     protected function setUp()
     {
-        $this->hero = new Hero('Tamark', 2, 1);
-        $this->monster = new Monster('Wolf', 2, 1);
-        $this->turn = new Turn($this->hero, $this->monster);
-    }
-
-    /**
-     * @test
-     */
-    public function getHero_ReturnsHeroInstance()
-    {
-        $this->assertInstanceOf(Hero::class, $this->turn->getHero());
-    }
-
-    /**
-     * @test
-     */
-    public function getMonster_ReturnsMonsterInstance()
-    {
-        $this->assertInstanceOf(Monster::class, $this->turn->getEnemy());
+        $this->turn = new Turn();
     }
 
     /**
@@ -50,8 +24,48 @@ class TurnTest extends TestCase
      */
     public function doTurn_HeroAttackedMonsterAndMonsterAttackedHero_DecreaseHealths()
     {
-        $this->turn->doTurn();
-        $this->assertEquals(1, $this->hero->getHealth());
-        $this->assertEquals(1, $this->monster->getHealth());
+        $this->turn->doTurn($this->getPlayersMock(true, $this->once()));
+    }
+
+    /**
+     * @test
+     */
+    public function doTurn_HeroKilledMonster_MonsterDoesNotHitBack()
+    {
+        $this->turn->doTurn($this->getPlayersMock(false, $this->never()));
+    }
+
+    /**
+     * @param $enemyIsAlive
+     * @param $attackInvokeTimes
+     * @return \PHPUnit\Framework\MockObject\MockObject|Players
+     */
+    private function getPlayersMock($enemyIsAlive, $attackInvokeTimes)
+    {
+        $heroMock = $this->createMock(Hero::class);
+        $heroMock
+            ->expects($this->once())
+            ->method('playTurn');
+
+        $enemyMock = $this->createMock(Monster::class);
+        $enemyMock
+            ->expects($this->once())
+            ->method('isAlive')
+            ->willReturn($enemyIsAlive);
+
+        $enemyMock
+            ->expects($attackInvokeTimes)
+            ->method('attack');
+
+        $playersMock = $this->createMock(Players::class);
+        $playersMock
+            ->expects($this->once())
+            ->method('getHero')
+            ->willReturn($heroMock);
+        $playersMock
+            ->expects($this->once())
+            ->method('getEnemy')
+            ->willReturn($enemyMock);
+        return $playersMock;
     }
 }
