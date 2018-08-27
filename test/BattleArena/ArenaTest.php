@@ -1,7 +1,7 @@
 <?php
 
 use BattleArena\Arena;
-use BattleArena\Character\Character;
+use BattleArena\Character\Monster;
 use BattleArena\Character\Enemies;
 use BattleArena\Character\Hero;
 use BattleArena\Consumable\HealingPotion;
@@ -16,7 +16,7 @@ class ArenaTest extends TestCase
      */
     public function battle_HasTwoCharacterHeroInstantKillEnemy_ReturnsHeroWinsAnnouncement()
     {
-        $arena = new Arena(new Character('Tamark', 50, 50), new Character('Giant Wolf', 49, 5));
+        $arena = new Arena(new Monster('Tamark', 50, 50), new Monster('Giant Wolf', 49, 5));
 
         $this->assertEquals('Tamark has won the battle, 50 health left', $arena->battle());
     }
@@ -37,8 +37,8 @@ class ArenaTest extends TestCase
         int $monsterDamage,
         string $expectedAnnouncement
     ) {
-        $hero = new Character('Tamark', $heroHealth, $heroDamage);
-        $monster = new Character('Giant Wolf', $monsterHealth, $monsterDamage);
+        $hero = new Monster('Tamark', $heroHealth, $heroDamage);
+        $monster = new Monster('Giant Wolf', $monsterHealth, $monsterDamage);
         $arena = new Arena($hero, $monster);
 
         $this->assertEquals($expectedAnnouncement, $arena->battle());
@@ -59,10 +59,10 @@ class ArenaTest extends TestCase
      */
     public function battle_HasHeroAndMultipleEnemy_ReturnsEnemiesWinsAnnouncement()
     {
-        $enemies = new Enemies(new Character('Zombie1', 10, 5));
-        $enemies->addEnemy(new Character('Zombie2', 10, 50));
+        $enemies = new Enemies(new Monster('Zombie1', 10, 5));
+        $enemies->addEnemy(new Monster('Zombie2', 10, 50));
 
-        $arena = new Arena(new Character('Tamark', 50, 10), $enemies);
+        $arena = new Arena(new Monster('Tamark', 50, 10), $enemies);
 
         $this->assertEquals('Enemies has won the battle, 10 health left', $arena->battle());
     }
@@ -72,10 +72,10 @@ class ArenaTest extends TestCase
      */
     public function battle_HasHeroAndMultipleEnemy_ReturnsHeroWinsAnnouncement()
     {
-        $enemies = new Enemies(new Character('Zombie1', 10, 5));
-        $enemies->addEnemy(new Character('Zombie2', 10, 5));
+        $enemies = new Enemies(new Monster('Zombie1', 10, 5));
+        $enemies->addEnemy(new Monster('Zombie2', 10, 5));
 
-        $arena = new Arena(new Character('Tamark', 50, 20), $enemies);
+        $arena = new Arena(new Monster('Tamark', 50, 20), $enemies);
 
         $this->assertEquals('Tamark has won the battle, 45 health left', $arena->battle());
     }
@@ -89,7 +89,7 @@ class ArenaTest extends TestCase
         $hero->addEquipment(new Weapon(2));
         $hero->addEquipment(new Armour(1));
 
-        $monster = new Character('Orc', 60, 5);
+        $monster = new Monster('Orc', 60, 5);
 
         $arena = new Arena($hero, $monster);
 
@@ -108,8 +108,8 @@ class ArenaTest extends TestCase
         $hero->addEquipment(new Weapon(5));
         $hero->addEquipment(new Armour(10));
 
-        $orc = new Character('Orc', 60, 5);
-        $wizard = new Character('Wizard', 20, 10);
+        $orc = new Monster('Orc', 60, 5);
+        $wizard = new Monster('Wizard', 20, 10);
 
         $enemies = new Enemies($orc);
         $enemies->addEnemy($wizard);
@@ -131,7 +131,7 @@ class ArenaTest extends TestCase
         $hero->addConsumable(new HealingPotion());
         $hero->addConsumable(new HealingPotion());
 
-        $orc = new Character('Orc', 60, 6);
+        $orc = new Monster('Orc', 60, 6);
 
         $arena = new Arena($hero, $orc);
 

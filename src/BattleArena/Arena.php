@@ -55,7 +55,6 @@ class Arena
 
     private function getDefender(): CharacterInterface
     {
-        $defender = $this->attacker === $this->hero ? $this->monster : $this->hero;
-        return $defender;
+        return $this->attacker === $this->hero ? $this->monster : $this->hero;
     }
 }

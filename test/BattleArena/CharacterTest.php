@@ -1,18 +1,18 @@
 <?php
 
-use BattleArena\Character\Character;
+use BattleArena\Character\Monster;
 use PHPUnit\Framework\TestCase;
 
 class CharacterTest extends TestCase
 {
     /**
-     * @var Character
+     * @var Monster
      */
     private $character;
 
     public function setUp()
     {
-        $this->character = new Character('Tamark', 50, 5);
+        $this->character = new Monster('Tamark', 50, 5);
     }
 
     /**
@@ -53,7 +53,7 @@ class CharacterTest extends TestCase
      */
     public function attack_CharacterHas_ReturnsIsNotAlive()
     {
-        $orc = new Character('Orc', 50, 10);
+        $orc = new Monster('Orc', 50, 10);
         $this->character->attack($orc);
         $this->assertEquals(45, $orc->getHealth());
     }

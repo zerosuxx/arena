@@ -1,6 +1,6 @@
 <?php
 
-use BattleArena\Character\Character;
+use BattleArena\Character\Monster;
 use BattleArena\Character\Enemies;
 use PHPUnit\Framework\TestCase;
 
@@ -13,8 +13,8 @@ class EnemiesTest extends TestCase
 
     protected function setUp()
     {
-        $this->enemies = new Enemies(new Character('Zombie1', 20, 5));
-        $this->enemies->addEnemy(new Character('Zombie2', 30, 5));
+        $this->enemies = new Enemies(new Monster('Zombie1', 20, 5));
+        $this->enemies->addEnemy(new Monster('Zombie2', 30, 5));
     }
 
     /**

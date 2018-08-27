@@ -2,27 +2,42 @@
 
 namespace BattleArena\Character;
 
-class Character implements CharacterInterface
+class Character
 {
-    use SimpleCharacterTrait;
+    /**
+     * @var string
+     */
+    protected $name;
+
+    /**
+     * @var int
+     */
+    protected $health;
+
+    /**
+     * @var int
+     */
+    protected $damage;
 
     public function __construct(string $name, int $health, int $damage)
     {
-        $this->init($name, $health, $damage);
+        $this->name = $name;
+        $this->health = $health;
+        $this->damage = $damage;
     }
 
-    public function getDamage(): int
+    public function getName(): string
     {
-        return $this->damage;
+        return $this->name;
     }
 
-    public function takeDamage(int $damage): void
+    public function getHealth(): int
     {
-        $this->health = $this->getHealth() - $damage;
+        return $this->health;
     }
 
-    public function attack(CharacterInterface $defender): void
+    public function isAlive(): bool
     {
-        $defender->takeDamage($this->getDamage());
+        return $this->getHealth() > 0;
     }
 }

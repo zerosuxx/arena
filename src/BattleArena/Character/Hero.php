@@ -5,10 +5,8 @@ namespace BattleArena\Character;
 use BattleArena\Consumable\ConsumableInterface;
 use BattleArena\Equipment\EquipmentInterface;
 
-class Hero implements CharacterInterface
+class Hero extends Character implements CharacterInterface
 {
-    use SimpleCharacterTrait;
-
     /**
      * @var int
      */
@@ -26,8 +24,16 @@ class Hero implements CharacterInterface
 
     public function __construct(string $name, int $health, int $damage)
     {
-        $this->init($name, $health, $damage);
+        parent::__construct($name, $health, $damage);
         $this->maxHealth = $health;
+    }
+
+    private function arraySum(array $data, callable $callback, int $start = 0)
+    {
+        return array_reduce($data, function ($sum, $value) use ($callback) {
+            $sum += $callback($value);
+            return $sum;
+        }, $start);
     }
 
     /**
@@ -35,11 +41,9 @@ class Hero implements CharacterInterface
      */
     public function getDamage(): int
     {
-        $damage = $this->damage;
-        $damage += array_reduce($this->equipments, function ($sum, EquipmentInterface $equipment) {
-            $sum += $equipment->getDamage();
-            return $sum;
-        }, 0);
+        $damage = $this->arraySum($this->equipments, function (EquipmentInterface $equipment) {
+            return $equipment->getDamage();
+        }, $this->damage);
         return $damage;
     }
 
@@ -48,10 +52,9 @@ class Hero implements CharacterInterface
      */
     public function takeDamage(int $damage): void
     {
-        $damage -= array_reduce($this->equipments, function ($sum, EquipmentInterface $equipment) {
-            $sum += $equipment->getDefense();
-            return $sum;
-        }, 0);
+        $damage -= $this->arraySum($this->equipments, function (EquipmentInterface $equipment) {
+            return $equipment->getDefense();
+        });
 
         $health = $this->getHealth();
         $health -= max(0, $damage);
@@ -62,7 +65,7 @@ class Hero implements CharacterInterface
     public function attack(CharacterInterface $defender): void
     {
         $consumable = current($this->consumables);
-        if ($consumable && $defender->getHealth() > $this->getDamage() && $defender->getDamage() >= $this->getHealth()) {
+        if ($this->canUseHealingPotion($defender, $consumable)) {
             $consumable->use($this);
             array_shift($this->consumables);
             return;
@@ -95,5 +98,15 @@ class Hero implements CharacterInterface
     public function setHealth(int $health): void
     {
         $this->health = $health;
+    }
+
+    /**
+     * @param CharacterInterface $defender
+     * @param $consumable
+     * @return bool
+     */
+    private function canUseHealingPotion(CharacterInterface $defender, $consumable): bool
+    {
+        return $consumable && $defender->getHealth() > $this->getDamage() && $defender->getDamage() >= $this->getHealth();
     }
 }

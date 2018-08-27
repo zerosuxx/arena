@@ -1,6 +1,6 @@
 <?php
 
-use BattleArena\Character\Character;
+use BattleArena\Character\Monster;
 use BattleArena\Consumable\HealingPotion;
 use BattleArena\Equipment\Armour;
 use BattleArena\Equipment\Weapon;
@@ -90,7 +90,7 @@ class HeroTest extends TestCase
     {
         $this->hero->addConsumable(new HealingPotion());
 
-        $monster = new Character('Orc', 60, 40);
+        $monster = new Monster('Orc', 60, 40);
         $monster->attack($this->hero);
         $this->hero->attack($monster);
 
